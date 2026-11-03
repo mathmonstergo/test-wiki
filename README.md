@@ -1,59 +1,109 @@
-# 项目知识库 (Wiki)
+# Apex Legends Wiki (基于 DeepSeek Super Agent 自动维护)
 
-基于 [VitePress](https://vitepress.dev/) 构建的项目初始知识库与技术文档中心，用于统一团队技术共识、规范研发流程及沉淀项目资产。
+> 🎮 **以 GitHub 仓库为原生 Wiki · 以 GitHub 为中枢管理工具 · 由 DeepSeek Super Agent 全自动驱动维护**
 
-## 特性亮点
+本项目是运行在 **DeepSeek 最新推出的 Super Agent (DeepSeek Harness)** 框架下、由 AI 自动化维护的 **《Apex 英雄》(Apex Legends)** 知识库。
 
-- ⚡ **极速冷启动与热重载**：基于 Vite 与 Vue 3，提供流畅的文档编写与实时预览体验。
-- 🔍 **内置全文检索**：集成客户端轻量全文搜索，支持快速定位文档内容。
-- 📱 **响应式与深色模式**：开箱即用支持移动端适配与明暗主题平滑切换。
-- 📚 **规范化目录组织**：涵盖项目指南、系统架构、开发规范与资料索引四大核心板块。
-- 🤖 **自动化部署**：配置 GitHub Actions 工作流，代码合并至 `main` 分支后自动编译并发布至 GitHub Pages。
+---
 
-## 目录结构
+## 核心理念与定位
+
+### 1. 以 GitHub 本身作为 Wiki，以 GitHub 作为管理工具
+本项目**并非单纯搭建一个对外独立展示的网站**，而是**将 GitHub 项目本身作为 Wiki 知识库，并全面使用 GitHub 原生能力作为整个 Wiki 的管理中枢**：
+- **知识库载体**：利用 GitHub 仓库中的 Markdown 规范体系、目录索引、文件历史追踪（Git History）与行级追溯（Blame），作为游戏数据的“单一真实数据源 (Single Source of Truth)”。
+- **工单与消息源追踪 (Issues)**：通过 GitHub Issues 对接与登记官方消息源变动事件（如新补丁发布、紧急热修、数据源异常等）以及社区反馈。
+- **内容评审与合流 (Pull Requests)**：AI Agent 抓取并解析官方信息后，自主在仓库内发起 Pull Request，附带官方消息源对照与变更解析，由人类或自动化流程进行 Review 与合流。
+- **版本归档 (Releases / Tags)**：以 GitHub Releases 对应 Apex 的大赛季与核心补丁版本，记录各周期的 Wiki 快照。
+- **自动化流转 (GitHub Actions)**：作为调度底座，实现 Markdown 链接检查、格式校验以及可选的文档预览同步。
+
+### 2. 针对 Apex 官方消息源进行添加与持续维护
+知识库聚焦于《Apex 英雄》官方一手权威信源：
+- **EA / Respawn 官方公告与博客** (Official Patch Notes, Dev Blogs)
+- **Steam 社区官方更新日志** (Steam Community Hub & Client Updates)
+- **官方技术支持与已知问题追踪** (Apex Legends Trello Board)
+- **官方紧急热修动态** (Respawn / Apex Legends 官方推特/X 动态)
+
+Agent 负责监控以上信源的变动，对官方文本中涉及的英雄技能数值、武器参数（伤害、弹夹、衰减）、排位赛积分机制等进行结构化提取与对比，并自动同步更新 Wiki 中的对应文档。
+
+### 3. 基于 DeepSeek Super Agent 的源码改造与练手探索
+- **通用框架与更广泛的应用潜力**：DeepSeek 官方推出的 Super Agent 框架是一个具备通用任务规划、工具调用、环境交互与自我反思能力的通用智能体框架，其原生设计并非专用于搭建 Wiki。其底层的整体逻辑流程具备通用性和极大的扩展空间，能够胜任更广泛的自动化系统构建。
+- **练手试点项目**：本项目选择以“AI 自动维护的 Apex Legends Wiki”作为切入点和练手项目，探索对 Super Agent 的整体逻辑流程进行针对性改动与源码适配：
+  - 增加**持续性消息源监听与事件分发机制**；
+  - 扩展面向游戏补丁与专有名词的**领域抽取与对比引擎 (Diff Engine)**；
+  - 强化 Agent 基于 Git/GitHub 平台的**自主文档编辑、分支创建与 Pull Request 提交流程**；
+  - 为未来将 Super Agent 推广应用于自动化工程文档维护、开源社区治理等更广泛场景沉淀宝贵经验。
+
+---
+
+## Wiki 知识库快速导航
+
+直接在 GitHub 中点击下方链接即可查阅对应 Wiki 文档：
+
+| 知识板块 | 核心文档 | 说明 |
+| :--- | :--- | :--- |
+| **🧭 导航与索引** | [Wiki 总目录](wiki/README.md) · [项目指南](wiki/guide/index.md) | Wiki 整体组织与贡献指南 |
+| **📡 官方消息源** | [消息源清单与监控规范](wiki/sources/official-sources.md) | EA、Steam、Trello 等官方监听源与提取规则 |
+| **🎖️ 传奇档案** | [传奇总览](wiki/legends/README.md) · [突击](wiki/legends/assault.md) · [散兵](wiki/legends/skirmisher.md) · [侦察](wiki/legends/recon.md) · [控制](wiki/legends/controller.md) · [支援](wiki/legends/support.md) | 包含各职阶传奇的被动、战术、绝招数值与版本变迁 |
+| **🔫 武器军械库** | [武器总览](wiki/weapons/README.md) · [突击步枪](wiki/weapons/assault-rifles.md) · [冲锋枪](wiki/weapons/smgs.md) · [霰弹枪](wiki/weapons/shotguns.md) · [狙击枪](wiki/weapons/snipers.md) | 基础伤害、弹药衰减、配件效果与 DPS/TTK 数据 |
+| **📅 赛季与补丁** | [版本变迁总览](wiki/seasons/README.md) · [当前赛季动态](wiki/seasons/current-season.md) · [补丁跟踪机制](wiki/seasons/patch-tracking.md) | 历代大赛季改动与平衡性 Patch Notes 归档 |
+| **🤖 架构与设计** | [Agent 自动维护架构](wiki/architecture/overview.md) · [Super Agent 源码适配与改造](wiki/architecture/agent-adaptation.md) | DeepSeek Super Agent 核心改造方案与工作流 |
+
+---
+
+## 仓库结构说明
 
 ```text
 .
 ├── .github/
-│   └── workflows/
-│       └── deploy.yml          # GitHub Pages 自动化构建与部署工作流
-├── docs/                       # Wiki 文档根目录
-│   ├── .vitepress/             # 站点与导航配置
-│   ├── guide/                  # 项目指南（简介、快速上手、结构说明）
-│   ├── architecture/           # 架构设计（分层总览、技术选型、核心模块）
-│   ├── standards/              # 协作规范（Git 工作流、代码规范、文档规范）
-│   └── resources/              # 参考资料（外部文档索引、开发工具）
+│   ├── ISSUE_TEMPLATE/         # GitHub Issue 工单模板（消息源更新、错误反馈等）
+│   │   ├── source_update.md    # 官方消息源变动登记工单
+│   │   └── wiki_feedback.md    # Wiki 内容修正与补充建议
+│   ├── PULL_REQUEST_TEMPLATE.md# Super Agent 提交更新时的 PR 标准模板
+│   └── workflows/              # GitHub Actions 自动化工作流
+│       ├── deploy.yml          # GitHub Pages 静态文档构建与部署（可选预览）
+│       └── wiki-ci.yml         # Markdown 语法、死链与规范自动化检查
+├── wiki/                       # GitHub 原生 Wiki 核心数据目录
+│   ├── README.md               # Wiki 全站总索引
+│   ├── guide/                  # 项目指南与架构定位
+│   ├── sources/                # Apex 官方消息源清单与监听规范
+│   ├── legends/                # 传奇档案与技能数值
+│   ├── weapons/                # 武器参数与配件体系
+│   ├── seasons/                # 赛季更新与补丁日志
+│   └── architecture/           # Super Agent 自动维护架构与改造方案
+├── docs/                       # VitePress 文档入口（可选网页版预览）
+│   └── .vitepress/             # 站点导航与主题配置
 ├── package.json
-└── README.md
+└── README.md                   # 仓库主页与 Wiki 快速门户
 ```
 
-## 本地开发指南
+---
 
-### 环境准备
+## GitHub 管理工作流
 
-- **Node.js** >= 18.0.0 (推荐 Node.js 20 或 22)
-- **npm** >= 9.0.0 (或 pnpm / yarn)
+1. **消息源触发**：
+   - 当官方发布新版本或热修时，监控模块在 GitHub 中创建带有 `official-source` 标签的 Issue，包含原文链接与原始公告。
+2. **Super Agent 自主分析与更新**：
+   - Super Agent 认领工单，拉取对应官方文本进行比对，定位受影响的 `wiki/` 文件（例如武器调整、英雄数值）。
+   - Agent 本地修改 Markdown，生成符合规范的 Diff 内容与提交说明。
+3. **Pull Request 评审合流**：
+   - Agent 创建以 `agent/*` 为命名的分支并发起 Pull Request，关联对应的 Issue。
+   - 触发 CI 自动化检查，通过后由人类或授权流程合并入 `main`。
+4. **历史存档**：
+   - 每次合并自动记录进 Git 提交树，随时可通过 GitHub 网页端查阅任意英雄或武器的历史变迁。
 
-### 常用命令
+---
+
+## 本地开发与预览（可选）
+
+虽然本项目以 GitHub 仓库为核心载体，同时也保留了基于 VitePress 的本地静态预览支持：
 
 ```bash
-# 1. 安装项目依赖
+# 1. 安装依赖
 npm install
 
-# 2. 启动本地开发服务 (支持实时热重载)
+# 2. 启动本地实时预览
 npm run docs:dev
 
-# 3. 构建静态站点产物
+# 3. 运行构建校验
 npm run docs:build
-
-# 4. 本地预览构建产物
-npm run docs:preview
 ```
-
-本地服务启动后，默认可通过浏览器访问 `http://localhost:5173/test-wiki/`。
-
-## 协作与贡献
-
-1. 所有文档均采用 Markdown 编写，存放于 `docs/` 目录下。
-2. 新增或移动文档章节时，请同步更新 `docs/.vitepress/config.mts` 中的 `nav` 或 `sidebar` 导航配置。
-3. 提交代码时请遵循 Conventional Commits 规范，并在本地执行 `npm run docs:build` 验证无语法及死链报错后再发起 Pull Request。

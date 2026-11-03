@@ -2,31 +2,31 @@
 layout: home
 
 hero:
-  name: "项目知识库"
-  text: "文档驱动开发 · 统一知识沉淀"
-  tagline: "构建清晰、规范、可持续维护的初始 Wiki 框架"
+  name: "Apex Legends Wiki"
+  text: "DeepSeek Super Agent 自动维护"
+  tagline: "追踪官方消息源 · AI 自主知识提炼 · 自动化 Wiki 运维"
   actions:
     - theme: brand
       text: 快速开始
       link: /guide/quick-start
     - theme: alt
-      text: 架构设计
-      link: /architecture/overview
+      text: Apex 知识库
+      link: /apex/overview
     - theme: alt
-      text: 开发规范
-      link: /standards/git-workflow
+      text: 自动维护架构
+      link: /architecture/overview
 
 features:
-  - icon: 🚀
-    title: 快速上手
-    details: 从环境准备到本地运行，提供清晰平滑的新人入职与开发启动指南。
-  - icon: 🏛️
-    title: 架构与技术选型
-    details: 记录系统架构设计、技术选型决策及演进思考，保障团队技术共识。
-  - icon: 📐
-    title: 规范与最佳实践
-    details: 统一 Git 分支模型、代码编写标准与审查规范，提升工程协作质量。
-  - icon: 🔍
-    title: 全文检索与高效查阅
-    details: 内置轻量全文搜索引擎与直观的层级目录，快速定位所需知识。
+  - icon: 🎯
+    title: 官方消息源智能追踪
+    details: 面向 EA/Respawn 官方公告、补丁更新（Patch Notes）及社交动态，自动抓取并解析最新游戏改动。
+  - icon: 🤖
+    title: DeepSeek Super Agent 驱动
+    details: 基于 DeepSeek 最新的通用 Super Agent 框架，探索端到端的信息挖掘、文本重组与文档自动更新闭环。
+  - icon: ⚙️
+    title: 框架改造与扩展适配
+    details: 针对通用 Agent 进行源码级适配，打通数据采集、PR 提交与静态站点自动构建部署全流程。
+  - icon: ⚡
+    title: 现代 VitePress 展现层
+    details: 秒级响应、内置本地全文检索、多端自适应与深色模式，提供清爽优雅的查阅体验。
 ---
